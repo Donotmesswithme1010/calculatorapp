@@ -3,18 +3,6 @@ os: linux
 files:
   - source: /
     destination: /var/www/html
-permissions:
-  - object: /var/www/html
-    pattern: "**"
-    owner: apache
-    group: apache
-hooks:
-  ApplicationStop:
-    - location: scripts/stop_apache.sh
-      timeout: 30
-      runas: root
-  AfterInstall:
-    - location: scripts/start_apache.sh
-      timeout: 30
-      runas: root
+
+
 
