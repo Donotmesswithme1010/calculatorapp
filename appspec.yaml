@@ -1,0 +1,19 @@
+version: 0.0
+os: linux
+
+files:
+  - source: demo-0.0.1-SNAPSHOT.jar
+    destination: /home
+
+hooks:
+
+
+  ApplicationStop:
+    - location: stop_server.sh
+      timeout: 300
+      runas: root
+
+  ApplicationStart:
+    - location: start_server.sh
+      timeout: 300
+      runas: root
