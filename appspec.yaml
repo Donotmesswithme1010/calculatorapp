@@ -1,19 +1,20 @@
 version: 0.0
 os: linux
-
 files:
-  - source: demo-0.0.1-SNAPSHOT.jar
-    destination: /home
-
+  - source: /
+    destination: /var/www/html
+permissions:
+  - object: /var/www/html
+    pattern: "**"
+    owner: apache
+    group: apache
 hooks:
-
-
   ApplicationStop:
-    - location: stop_server.sh
-      timeout: 300
+    - location: scripts/stop_apache.sh
+      timeout: 30
+      runas: root
+  AfterInstall:
+    - location: scripts/start_apache.sh
+      timeout: 30
       runas: root
 
-  ApplicationStart:
-    - location: start_server.sh
-      timeout: 300
-      runas: root
